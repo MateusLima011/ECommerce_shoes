@@ -1,10 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#F9F9F9</color>
+    <color name="colorPrimaryDark">#C6C6C6</color>
+    <color name="colorAccent">#F5F5F5</color>
+
+    <color name="colorText">#666666</color>
+    <color name="colorLink">#00A6FF</color>
+    <color name="colorNavButton">#77D353</color>
+    <color name="colorViewLine">#DDDDDD</color>
+
+    <color name="colorNavItemSelected">#F1F1F1</color>
+
+    <color name="colorLightGreenBox">#BB77D353</color>
+
+    <color name="colorOrangeInfo">#FF9052</color>
+
+    <color name="colorLightYellowBox">#BBFFF150</color>
+
+    <color name="colorFieldFocused">#F2F9FF</color>
+
+    <color name="colorBackgroundProxy">#55FFFFFF</color>
+
+    <color name="colorTextBox">#EEEEEE</color>
+    <color name="colorTextBoxTransparent">#CCEEEEEE</color>
+    <color name="colorLightGrey">#AAAAAA</color>
+    <color name="colorLighterGrey">#EFEFEF</color>
+
+    <color name="colorLightRed">#F85F62</color>
+    <color name="colorLightBlue">#00A4FF</color>
+
+    <color name="colorMediumYellow">#FFFFD840</color>
+    <color name="colorMediumRed">#FF0000</color>
 </resources>

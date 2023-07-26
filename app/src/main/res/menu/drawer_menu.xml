@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group
+        android:id="@+id/groupMenu"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/allShoes"
+            android:title="@string/item_all_shoes" />
+        <item
+            android:id="@+id/flipFlops"
+            android:title="@string/item_flip_flops" />
+        <item
+            android:id="@+id/cleats"
+            android:title="@string/item_cleats" />
+        <item
+            android:id="@+id/sandals"
+            android:title="@string/item_sandals" />
+        <item
+            android:id="@+id/balletShoes"
+            android:title="@string/item_ballet_shoes" />
+        <item
+            android:id="@+id/suitShoes"
+            android:title="@string/item_suit_shoes" />
+        <item
+            android:id="@+id/shoes"
+            android:title="@string/item_shoes" />
+        <item
+            android:id="@+id/performanceShoes"
+            android:title="@string/item_all_shoes" />
+    </group>
+
+    <group
+        android:id="@+id/groupMenuNotLogged"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/contact"
+            android:icon="@drawable/ic_email_black_24dp"
+            android:title="@string/item_contact" />
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/ic_domain_black_24dp"
+            android:title="@string/item_about" />
+        <item
+            android:id="@+id/privacyPolicy"
+            android:icon="@drawable/ic_shield_lock_black_24dp"
+            android:title="@string/item_privacy_policy" />
+    </group>
+
+    <group
+        android:visible="false"
+        android:id="@+id/groupMenuLogged"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/myOrders"
+            android:icon="@drawable/ic_package_variant_closed_black_24dp"
+            android:title="@string/item_my_orders" />
+        <item
+            android:id="@+id/settings"
+            android:icon="@drawable/ic_package_variant_closed_black_24dp"
+            android:title="@string/item_settings" />
+        <item
+            android:id="@+id/singOut"
+            android:icon="@drawable/ic_exit_run_black_24dp"
+            android:title="@string/item_sign_out" />
+    </group>
+</menu>
