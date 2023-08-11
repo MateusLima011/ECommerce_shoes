@@ -189,7 +189,7 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         val fragment =
             supportFragmentManager.findFragmentByTag(FRAGMENT_TAG) ?: getFragment(R.id.item_about)
-        fragmentTransaction.replace(R.id.fl_fragment_container, fragment, FRAGMENT_TAG)
+        fragmentTransaction.replace(R.id.fl_fragment_container, getFragment(R.id.item_about))
         fragmentTransaction.commit()
     }
 
@@ -207,18 +207,6 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.main, menu)
         return true
     }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_settings -> {
-                Toast.makeText(this, "trocando layout", Toast.LENGTH_SHORT).show()
-                return true
-            }
-
-            else -> return super.onOptionsItemSelected(item)
-        }
-    }
-
 
     inner class SelectObserverNavMenuItems(private val callbackRemoveSelection: () -> Unit) :
         SelectionTracker.SelectionObserver<Long>() {
