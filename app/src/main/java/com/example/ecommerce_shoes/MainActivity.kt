@@ -3,6 +3,7 @@ package com.example.ecommerce_shoes
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.TextView
@@ -14,11 +15,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.selection.StorageStrategy
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.ecommerce_shoes.data.NavMenuItemsDataBase
 import com.example.ecommerce_shoes.databinding.ActivityMainBinding
 import com.example.ecommerce_shoes.domain.NavMenuItem
 import com.example.ecommerce_shoes.domain.User
 import com.example.ecommerce_shoes.ui.AboutFragment
+import com.example.ecommerce_shoes.ui.ContactFragment
 import com.example.ecommerce_shoes.ui.NavMenuItemsAdapter
 import com.example.ecommerce_shoes.util.NavMenuItemDetailsLookup
 import com.example.ecommerce_shoes.util.NavMenuItemKeyProvider
@@ -31,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         const val FRAGMENT_TAG = "frag-tag"
     }
 
-    val user = User(
+    private val user = User(
         "Mateus Vinicius",
         R.drawable.user,
         true
@@ -41,14 +44,19 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater).apply { setContentView(root) }
     }
 
-    lateinit var navMenuItems: List<NavMenuItem>
     lateinit var selectNavMenuItems: SelectionTracker<Long>
-    lateinit var navMenuItemsLogged: List<NavMenuItem>
     lateinit var selectNavMenuItemsLogged: SelectionTracker<Long>
-    lateinit var navMenu: NavMenuItemsDataBase
+    private lateinit var navMenu: NavMenuItemsDataBase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setupViews()
+        initNavMenu(savedInstanceState)
+        initFragment()
+
+    }
+
+    private fun setupViews() {
         setSupportActionBar(binding.appBarMain.appBar.toolbar)
 
         with(binding.appBarMain.appBar.toolbar) {
@@ -57,28 +65,16 @@ class MainActivity : AppCompatActivity() {
                 binding.drawerLayout.openDrawer(GravityCompat.START)
             }
         }
-
-        initNavMenu(savedInstanceState)
-        initFragment()
-
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-
-        selectNavMenuItems.onSaveInstanceState(outState)
-        selectNavMenuItemsLogged.onSaveInstanceState(outState)
     }
 
     private fun initNavMenu(savedInstanceState: Bundle?) {
         navMenu = NavMenuItemsDataBase(this)
-        navMenuItems = navMenu.items
-        navMenuItemsLogged = navMenu.itemsLogged
+        val navMenuItems = navMenu.items
+        val navMenuItemsLogged = navMenu.itemsLogged
 
         showHideNavMenuViews()
-
-        initNavMenuItemsLogged()
-        initNavMenuItems()
+        initNavMenuItemsLogged(navMenuItemsLogged)
+        initNavMenuItems(navMenuItems)
 
         if (savedInstanceState != null) {
             selectNavMenuItems.onRestoreInstanceState(savedInstanceState)
@@ -86,6 +82,125 @@ class MainActivity : AppCompatActivity() {
         } else {
             selectNavMenuItems.select(R.id.item_all_shoes.toLong())
         }
+    }
+
+    private fun showHideNavMenuViews() {
+        replaceHeaderView(user.status)
+    }
+
+    private fun replaceHeaderView(isLogged: Boolean) {
+        val navHeaderUserNotLogged = binding.navMenu.navHeaderUserNotLogged.root
+        val navHeaderUserLogged = binding.navMenu.navHeaderUserLogged.root
+        val rvMenuItemsLogged = binding.navMenu.rvMenuItemsLogged
+
+        if (isLogged) {
+            navHeaderUserNotLogged.visibility = View.GONE
+            navHeaderUserLogged.visibility = View.VISIBLE
+            rvMenuItemsLogged.visibility = View.VISIBLE
+
+            binding.navMenu.navHeaderUserLogged.ivUser.setImageResource(user.image)
+            binding.navMenu.navHeaderUserLogged.tvUser.text = user.name
+        } else {
+            navHeaderUserNotLogged.visibility = View.VISIBLE
+            navHeaderUserLogged.visibility = View.GONE
+            rvMenuItemsLogged.visibility = View.GONE
+        }
+    }
+
+    private fun initNavMenuItemsLogged(navMenuItemsLogged: List<NavMenuItem>) {
+        val rvMenuItemsLogged = binding.navMenu.rvMenuItemsLogged
+        rvMenuItemsLogged.setHasFixedSize(true)
+        rvMenuItemsLogged.layoutManager = LinearLayoutManager(this)
+        rvMenuItemsLogged.adapter = NavMenuItemsAdapter(navMenuItemsLogged)
+
+        initNavMenuItemsLoggedSelection(rvMenuItemsLogged, navMenuItemsLogged)
+    }
+
+    private fun initNavMenuItemsLoggedSelection(
+        rvMenuItemsLogged: RecyclerView,
+        navMenuItemsLogged: List<NavMenuItem>
+    ) {
+
+        selectNavMenuItemsLogged = SelectionTracker.Builder<Long>(
+            "id-selected-item-logged",
+            rvMenuItemsLogged,
+            NavMenuItemKeyProvider(navMenuItemsLogged),
+            NavMenuItemDetailsLookup(rvMenuItemsLogged),
+            StorageStrategy.createLongStorage()
+        )
+            .withSelectionPredicate(NavMenuItemPredicate(this))
+            .build()
+
+        selectNavMenuItemsLogged.addObserver(
+            SelectObserverNavMenuItems {
+                selectNavMenuItems.selection.filter {
+                    selectNavMenuItems.deselect(it)
+                }
+            }
+        )
+        (rvMenuItemsLogged.adapter as NavMenuItemsAdapter).selectionTracker =
+            selectNavMenuItemsLogged
+    }
+
+    private fun initNavMenuItems(navMenuItems: List<NavMenuItem>) {
+        val rvMenuItems = binding.navMenu.rvMenuItems
+        rvMenuItems.setHasFixedSize(false)
+        rvMenuItems.layoutManager = LinearLayoutManager(this)
+        rvMenuItems.adapter = NavMenuItemsAdapter(navMenuItems)
+
+        initNavMenuItemsSelection(rvMenuItems, navMenuItems)
+    }
+
+    private fun initNavMenuItemsSelection(
+        rvMenuItems: RecyclerView,
+        navMenuItems: List<NavMenuItem>
+    ) {
+        selectNavMenuItems = SelectionTracker.Builder<Long>(
+            "id-selected-item",
+            rvMenuItems,
+            NavMenuItemKeyProvider(navMenuItems),
+            NavMenuItemDetailsLookup(rvMenuItems),
+            StorageStrategy.createLongStorage()
+        )
+            .withSelectionPredicate(NavMenuItemPredicate(this))
+            .build()
+
+        selectNavMenuItems.addObserver(
+            SelectObserverNavMenuItems {
+                selectNavMenuItemsLogged.selection.filter {
+                    selectNavMenuItems.deselect(it)
+                }
+            }
+        )
+
+        selectNavMenuItemsLogged.addObserver(
+            SelectObserverNavMenuItems {
+                selectNavMenuItems.selection.filter {
+                    selectNavMenuItemsLogged.deselect(it)
+                }
+            }
+        )
+
+        (rvMenuItems.adapter as NavMenuItemsAdapter).selectionTracker =
+            selectNavMenuItems
+    }
+
+    private fun initFragment() {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        val fragment =
+            supportFragmentManager.findFragmentByTag(FRAGMENT_TAG) ?: getFragment(R.id.item_about)
+        fragmentTransaction.replace(R.id.fl_fragment_container, fragment, FRAGMENT_TAG)
+        fragmentTransaction.commit()
+    }
+
+    private fun getFragment(fragmentId: Int): Fragment = when (fragmentId) {
+        R.id.item_about -> AboutFragment()
+        R.id.item_contact -> ContactFragment()
+        else -> AboutFragment()
+    }
+
+    fun updateToolbarTitleInFragment(titleStringId: Int) {
+        binding.appBarMain.appBar.toolbar.title = getString(titleStringId)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -105,115 +220,15 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun replaceHeaderView(isLogged: Boolean) = with(binding.navMenu) {
-        if (isLogged) {
-            navHeaderUserNotLogged.root.visibility = GONE
-
-            navHeaderUserLogged.root.visibility = VISIBLE
-            rvMenuItemsLogged.visibility = VISIBLE
-
-            with(navHeaderUserLogged) {
-                ivUser.setImageResource(user.image)
-                tvUser.text = user.name
-            }
-        } else {
-            navHeaderUserNotLogged.root.visibility = VISIBLE
-
-            navHeaderUserLogged.root.visibility = GONE
-            rvMenuItemsLogged.visibility = GONE
-        }
-    }
-
-
-    private fun showHideNavMenuViews() {
-        val view = replaceHeaderView(isLogged = user.status)
-    }
-
-    private fun initNavMenuItemsLogged() {
-        binding.navMenu.rvMenuItemsLogged.setHasFixedSize(true)
-        binding.navMenu.rvMenuItemsLogged.layoutManager = LinearLayoutManager(this)
-        binding.navMenu.rvMenuItemsLogged.adapter =
-            NavMenuItemsAdapter(navMenuItemsLogged)
-
-        initNavMenuItemsLoggedSelection()
-    }
-
-    private fun initNavMenuItemsLoggedSelection() {
-
-        selectNavMenuItemsLogged = SelectionTracker.Builder<Long>(
-            "id-selected-item-logged",
-            binding.navMenu.rvMenuItemsLogged,
-            NavMenuItemKeyProvider(navMenuItemsLogged),
-            NavMenuItemDetailsLookup(binding.navMenu.rvMenuItemsLogged),
-            StorageStrategy.createLongStorage()
-        )
-            .withSelectionPredicate(NavMenuItemPredicate(this))
-            .build()
-
-        selectNavMenuItemsLogged.addObserver(
-            SelectObserverNavMenuItems {
-                selectNavMenuItems.selection.filter {
-                    selectNavMenuItems.deselect(it)
-                }
-            }
-        )
-
-        (binding.navMenu.rvMenuItemsLogged.adapter as NavMenuItemsAdapter).selectionTracker =
-            selectNavMenuItemsLogged
-    }
-
-    private fun initNavMenuItems() {
-        binding.navMenu.rvMenuItems.setHasFixedSize(false)
-        binding.navMenu.rvMenuItems.layoutManager = LinearLayoutManager(this)
-        binding.navMenu.rvMenuItems.adapter = NavMenuItemsAdapter(navMenuItems)
-
-        initNavMenuItemsSelection()
-    }
-
-    private fun initNavMenuItemsSelection() {
-        selectNavMenuItems = SelectionTracker.Builder<Long>(
-            "id-selected-item",
-            binding.navMenu.rvMenuItems,
-            NavMenuItemKeyProvider(navMenuItems),
-            NavMenuItemDetailsLookup(binding.navMenu.rvMenuItems),
-            StorageStrategy.createLongStorage()
-        ).withSelectionPredicate(NavMenuItemPredicate(this))
-            .build()
-
-        selectNavMenuItems.addObserver(
-            SelectObserverNavMenuItems {
-                selectNavMenuItemsLogged.selection.filter {
-                    selectNavMenuItems.deselect(it)
-                }
-            }
-        )
-
-        selectNavMenuItemsLogged.addObserver(
-            SelectObserverNavMenuItems {
-                selectNavMenuItems.selection.filter {
-                    selectNavMenuItemsLogged.deselect(it)
-                }
-            }
-        )
-
-        (binding.navMenu.rvMenuItems.adapter as NavMenuItemsAdapter).selectionTracker =
-            selectNavMenuItems
-    }
-
-    inner class SelectObserverNavMenuItems(val callbackRemoveSelection: () -> Unit) :
+    inner class SelectObserverNavMenuItems(private val callbackRemoveSelection: () -> Unit) :
         SelectionTracker.SelectionObserver<Long>() {
 
         override fun onItemStateChanged(
             key: Long,
             selected: Boolean
         ) {
-            val fragment = getFragment(key)
+            val fragment = getFragment(key.toInt())
             replaceFragment(fragment)
-
-            if (selected) {
-                return
-            }
-
             callbackRemoveSelection()
 
         }
@@ -227,20 +242,6 @@ class MainActivity : AppCompatActivity() {
         userName.text = user.name
     }
 
-    private fun initFragment() {
-        val supFragment = supportFragmentManager
-        var fragment = supFragment.findFragmentByTag(FRAGMENT_TAG)
-
-        if (fragment == null) {
-            fragment = getFragment(R.id.item_about.toLong())
-        }
-        replaceFragment(fragment)
-    }
-
-    private fun getFragment(fragmentId: Long): Fragment = when (fragmentId) {
-            R.id.item_about.toLong() -> AboutFragment()
-            else -> AboutFragment()
-        }
 
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager
@@ -253,9 +254,6 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    fun updateToolbarTitleInFragment( titleStringId: Int ){
-       binding.appBarMain.appBar.toolbar.title = getString( titleStringId )
-    }
-}
 
+}
 
