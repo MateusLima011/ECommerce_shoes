@@ -23,6 +23,7 @@ import com.example.ecommerce_shoes.domain.User
 import com.example.ecommerce_shoes.ui.AboutFragment
 import com.example.ecommerce_shoes.ui.ContactFragment
 import com.example.ecommerce_shoes.ui.NavMenuItemsAdapter
+import com.example.ecommerce_shoes.ui.PrivacyPolicyFragment
 import com.example.ecommerce_shoes.util.NavMenuItemDetailsLookup
 import com.example.ecommerce_shoes.util.NavMenuItemKeyProvider
 import com.example.ecommerce_shoes.util.NavMenuItemPredicate
@@ -189,13 +190,13 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         val fragment =
             supportFragmentManager.findFragmentByTag(FRAGMENT_TAG) ?: getFragment(R.id.item_about)
-        fragmentTransaction.replace(R.id.fl_fragment_container, getFragment(R.id.item_about))
         fragmentTransaction.commit()
     }
 
     private fun getFragment(fragmentId: Int): Fragment = when (fragmentId) {
         R.id.item_about -> AboutFragment()
         R.id.item_contact -> ContactFragment()
+        R.id.item_privacy_policy -> PrivacyPolicyFragment()
         else -> AboutFragment()
     }
 
