@@ -1,6 +1,7 @@
 package com.example.ecommerce_shoes.domain
 
 class NavMenuItem(
+    val id: Long,
     val label: String,
     val iconId: Int = DEFAULT_ICON_ID
 ) {

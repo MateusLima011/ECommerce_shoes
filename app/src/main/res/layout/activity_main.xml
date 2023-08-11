@@ -12,15 +12,9 @@
         android:id="@+id/app_bar_main"
         layout="@layout/app_bar_main" />
 
-    <!--    <include layout="@layout/nav_menu" />-->
+    <include
+        android:id="@+id/nav_menu"
+        layout="@layout/nav_menu" />
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_user_not_logged"
-        app:menu="@menu/drawer_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
