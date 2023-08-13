@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.LoginActivity">
+
+        <include
+            android:id="@+id/toolbarLogin"
+            layout="@layout/app_bar" />
+
+        <LinearLayout
+            android:id="@+id/ll_container_fields"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="150dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/et_email"
+                style="@style/EditTextFormField"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="8dp"
+                android:autofillHints=""
+                android:background="@drawable/bg_form_field_bottom"
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/et_password"
+                style="@style/EditTextFormField"
+                android:layout_width="match_parent"
+                android:layout_marginTop="-1dp"
+                android:autofillHints=""
+                android:background="@drawable/bg_form_field_bottom"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_forgot_password"
+            style="@style/TextViewLink"
+            android:layout_marginTop="12dp"
+            android:text="@string/forgot_my_password"
+            app:layout_constraintStart_toStartOf="@id/ll_container_fields"
+            app:layout_constraintTop_toBottomOf="@id/ll_container_fields" />
+
+        <Button
+            android:id="@+id/bt_login"
+            style="@style/ButtonForm"
+            android:layout_marginTop="50dp"
+            android:text="@string/sign_in"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ll_container_fields" />
+
+        <TextView
+            android:id="@+id/tv_or"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/or"
+            android:textColor="@color/colorText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bt_login" />
+
+        <TextView
+            android:id="@+id/tv_sign_up"
+            style="@style/TextViewLink"
+            android:layout_marginTop="8dp"
+            android:text="@string/create_my_account"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_or" />
+
+        <include
+            layout="@layout/text_view_privacy_policy_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_up" />
+
+        <FrameLayout
+            android:id="@+id/fl_proxy_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorBackgroundProxy"
+            android:visibility="gone">
+
+            <ProgressBar
+                style="@style/ProgressBarGreyProxy"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center" />
+
+
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

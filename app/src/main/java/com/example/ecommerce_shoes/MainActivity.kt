@@ -1,5 +1,6 @@
 package com.example.ecommerce_shoes
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -17,11 +18,13 @@ import androidx.recyclerview.selection.StorageStrategy
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ecommerce_shoes.data.NavMenuItemsDataBase
+import com.example.ecommerce_shoes.databinding.ActivityLoginBinding
 import com.example.ecommerce_shoes.databinding.ActivityMainBinding
 import com.example.ecommerce_shoes.domain.NavMenuItem
 import com.example.ecommerce_shoes.domain.User
 import com.example.ecommerce_shoes.ui.AboutFragment
 import com.example.ecommerce_shoes.ui.ContactFragment
+import com.example.ecommerce_shoes.ui.LoginActivity
 import com.example.ecommerce_shoes.ui.NavMenuItemsAdapter
 import com.example.ecommerce_shoes.ui.PrivacyPolicyFragment
 import com.example.ecommerce_shoes.util.NavMenuItemDetailsLookup
@@ -38,7 +41,7 @@ class MainActivity : AppCompatActivity() {
     private val user = User(
         "Mateus Vinicius",
         R.drawable.user,
-        true
+        false
     )
 
     private val binding by lazy {
@@ -54,6 +57,11 @@ class MainActivity : AppCompatActivity() {
         setupViews()
         initNavMenu(savedInstanceState)
         initFragment()
+
+        binding.navMenu.navHeaderUserNotLogged.btLogin.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 
@@ -219,9 +227,7 @@ class MainActivity : AppCompatActivity() {
             val fragment = getFragment(key.toInt())
             replaceFragment(fragment)
             callbackRemoveSelection()
-
         }
-
     }
 
     private fun fillUserHeaderNavMenu() {
@@ -230,7 +236,6 @@ class MainActivity : AppCompatActivity() {
         userImage.setImageResource(user.image)
         userName.text = user.name
     }
-
 
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager
@@ -242,7 +247,5 @@ class MainActivity : AppCompatActivity() {
             )
             .commit()
     }
-
-
 }
 
