@@ -1,5 +1,6 @@
 package com.example.ecommerce_shoes.ui
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
 import androidx.appcompat.app.AppCompatActivity
@@ -48,6 +49,7 @@ class LoginActivity : AppCompatActivity() {
         binding.etPassword.setOnEditorActionListener { view, actionId, event ->
             onEditorAction(view, actionId, event)
         }
+
     }
 
     private fun onEditorAction(view: TextView, actionId: Int, event: KeyEvent?): Boolean {
@@ -126,7 +128,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun showProxy(status: Boolean) {
-        binding.flProxyContainer.visibility = if (status) View.VISIBLE else View.GONE
+        binding.proxyScreen.flProxyContainer.visibility = if (status) View.VISIBLE else View.GONE
     }
 
     private fun snackBarFeedback(viewContainer: ViewGroup, status: Boolean, message: String) {
@@ -180,6 +182,8 @@ class LoginActivity : AppCompatActivity() {
             showProxy(false)
             isSingInGoing(false)
             blockFields(false)
+
+            snackBarFeedback(binding.root, message = "Login invalido!", status = false)
         }, 1000)
     }
 
