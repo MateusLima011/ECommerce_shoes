@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val FRAGMENT_TAG = "frag-tag"
+        const val FRAGMENT_ID = "frag-id"
     }
 
     private val user = User(
@@ -89,7 +90,11 @@ class MainActivity : AppCompatActivity() {
             selectNavMenuItems.onRestoreInstanceState(savedInstanceState)
             selectNavMenuItemsLogged.onRestoreInstanceState(savedInstanceState)
         } else {
-            selectNavMenuItems.select(R.id.item_all_shoes.toLong())
+            var fragId = intent?.getIntExtra(FRAGMENT_ID, 0)
+            if (fragId == 0) {
+                fragId = R.id.item_all_shoes
+            }
+            selectNavMenuItems.select(fragId!!.toLong())
         }
     }
 
@@ -196,9 +201,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun initFragment() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        val fragment =
+        var fragment =
             supportFragmentManager.findFragmentByTag(FRAGMENT_TAG) ?: getFragment(R.id.item_about)
         fragmentTransaction.commit()
+
+        if (fragment == null) {
+            val fragId = intent?.getIntExtra(FRAGMENT_ID, R.id.item_about) ?: R.id.item_about
+            replaceFragment(getFragment(fragId))
+        }
     }
 
     private fun getFragment(fragmentId: Int): Fragment = when (fragmentId) {

@@ -18,7 +18,12 @@
             android:name=".ui.LoginActivity"
             android:exported="false"
             android:label="@string/title_activity_login"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity" >
+
+            <meta-data
+                android:name="androidx.core.app.NavUtils.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true"
