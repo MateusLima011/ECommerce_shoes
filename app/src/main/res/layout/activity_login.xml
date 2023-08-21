@@ -2,6 +2,7 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -68,7 +69,6 @@
             android:id="@+id/tv_or"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:text="@string/or"
             android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
@@ -96,10 +96,10 @@
             app:layout_constraintTop_toBottomOf="@id/tv_sign_up" />
 
         <include
-            android:id="@+id/proxyScreen"
+            android:id="@+id/proxyScreenForm"
             layout="@layout/proxy_screen"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

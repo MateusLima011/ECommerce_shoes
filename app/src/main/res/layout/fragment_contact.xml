@@ -1,169 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="vertical"
     tools:context=".ui.ContactFragment">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp">
 
-        <LinearLayout
-            android:id="@+id/ll_info_container"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_width="match_parent"
+        <include
+            android:id="@+id/info_block"
+            layout="@layout/info_block"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="38dp"
-            android:background="@color/colorLightYellowBox"
-            android:padding="12dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/iv_info"
-                style="@style/ImageViewLink"
-                android:layout_marginBottom="0dp"
-                android:layout_marginEnd="12dp"
-                android:tint="@color/colorText"
-                android:contentDescription="@string/ic_info_desc"
-                android:src="@drawable/ic_information_black_18dp"/>
-
-            <TextView
-                android:id="@+id/tv_cnpj"
-                style="@style/TextViewLink"
-                android:textColor="@color/colorText"
-                android:text="@string/contact_frag_info"/>
-        </LinearLayout>
+            android:layout_marginBottom="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_phones_title"
             style="@style/TextViewContentTitle"
-            android:layout_below="@+id/ll_info_container"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="18dp"
-            android:text="@string/contact_frag_phones_title"/>
+            android:layout_marginTop="16dp"
+            android:text="@string/contact_frag_phones_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/info_block" />
 
         <ImageView
             android:id="@+id/iv_phone_cities"
             style="@style/ImageViewLink"
-            android:layout_below="@+id/tv_phones_title"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="14dp"
+            android:layout_marginTop="8dp"
             android:contentDescription="@string/ic_phone_desc"
-            android:src="@drawable/ic_phone_black_18dp"/>
+            android:src="@drawable/ic_phone_black_18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_phones_title" />
+
         <TextView
             android:id="@+id/tv_phone_cities"
             style="@style/TextViewLink"
-            android:layout_alignTop="@+id/iv_phone_cities"
-            android:layout_toEndOf="@+id/iv_phone_cities"
-            android:text="@string/contact_frag_phone_cities"/>
+            android:layout_marginStart="4dp"
+            android:text="@string/contact_frag_phone_cities"
+            app:layout_constraintStart_toEndOf="@id/iv_phone_cities"
+            app:layout_constraintTop_toTopOf="@id/iv_phone_cities" />
 
         <TextView
             android:id="@+id/tv_phone_cities_info"
             style="@style/TextViewOrangeInfo"
-            android:layout_alignTop="@+id/tv_phone_cities"
-            android:layout_toEndOf="@+id/tv_phone_cities"
-            android:text="@string/contact_frag_phone_cities_info"/>
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/contact_frag_phone_cities_info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_phone_cities" />
 
         <ImageView
             android:id="@+id/iv_phone_other_regions"
             style="@style/ImageViewLink"
-            android:layout_marginBottom="38dp"
-            android:layout_below="@+id/iv_phone_cities"
-            android:layout_alignParentStart="true"
+            android:layout_marginTop="8dp"
             android:contentDescription="@string/ic_phone_desc"
-            android:src="@drawable/ic_phone_black_18dp"/>
+            android:src="@drawable/ic_phone_black_18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_phone_cities_info" />
+
         <TextView
             android:id="@+id/tv_phone_other_regions"
             style="@style/TextViewLink"
-            android:layout_alignTop="@+id/iv_phone_other_regions"
-            android:layout_toEndOf="@+id/iv_phone_other_regions"
-            android:text="@string/contact_frag_phone_other_regions"/>
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="6dp"
+            android:text="@string/contact_frag_phone_other_regions"
+            app:layout_constraintStart_toEndOf="@id/iv_phone_other_regions"
+            app:layout_constraintTop_toBottomOf="@id/tv_phone_cities_info" />
 
         <TextView
             android:id="@+id/tv_phone_other_regions_info"
             style="@style/TextViewOrangeInfo"
-            android:layout_alignTop="@+id/tv_phone_other_regions"
-            android:layout_toEndOf="@+id/tv_phone_other_regions"
-            android:text="@string/contact_frag_phone_other_regions_info"/>
+            android:layout_marginTop="6dp"
+            android:text="@string/contact_frag_phone_other_regions_info"
+            app:layout_constraintStart_toEndOf="@id/tv_phone_other_regions"
+            app:layout_constraintTop_toBottomOf="@id/tv_phone_cities_info" />
 
         <TextView
             android:id="@+id/tv_emails_title"
             style="@style/TextViewContentTitle"
-            android:layout_below="@+id/iv_phone_other_regions"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="18dp"
-            android:text="@string/contact_frag_emails_title"/>
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/contact_frag_emails_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_phone_other_regions" />
 
         <ImageView
             android:id="@+id/iv_email_orders"
             style="@style/ImageViewLink"
-            android:layout_below="@+id/tv_emails_title"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="14dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:contentDescription="@string/ic_email_desc"
-            android:src="@drawable/ic_email_outline_black_18dp"/>
+            android:src="@drawable/ic_email_outline_black_18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_emails_title" />
+
         <TextView
             android:id="@+id/tv_email_orders"
             style="@style/TextViewLink"
-            android:layout_alignTop="@+id/iv_email_orders"
-            android:layout_toEndOf="@+id/iv_email_orders"
-            android:text="@string/contact_frag_email_orders"/>
+            android:layout_marginStart="4dp"
+            android:text="@string/contact_frag_email_orders"
+            app:layout_constraintStart_toEndOf="@id/iv_email_orders"
+            app:layout_constraintTop_toTopOf="@id/iv_email_orders" />
+
         <TextView
             android:id="@+id/tv_email_orders_info"
             style="@style/TextViewOrangeInfo"
-            android:layout_alignTop="@+id/tv_email_orders"
-            android:layout_toEndOf="@+id/tv_email_orders"
-            android:text="@string/contact_frag_email_orders_info"/>
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/contact_frag_email_orders_info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_email_orders" />
 
         <ImageView
             android:id="@+id/iv_email_attendance"
             style="@style/ImageViewLink"
-            android:layout_marginBottom="38dp"
-            android:layout_below="@+id/iv_email_orders"
-            android:layout_alignParentStart="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
             android:contentDescription="@string/ic_email_desc"
-            android:src="@drawable/ic_email_outline_black_18dp"/>
+            android:src="@drawable/ic_email_outline_black_18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_email_orders_info" />
+
         <TextView
             android:id="@+id/tv_email_attendance"
             style="@style/TextViewLink"
-            android:layout_alignTop="@+id/iv_email_attendance"
-            android:layout_toEndOf="@+id/iv_email_attendance"
-            android:text="@string/contact_frag_email_attendance"/>
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="6dp"
+            android:text="@string/contact_frag_email_attendance"
+            app:layout_constraintStart_toEndOf="@id/iv_email_attendance"
+            app:layout_constraintTop_toBottomOf="@id/tv_email_orders_info" />
+
         <TextView
             android:id="@+id/tv_email_attendance_info"
             style="@style/TextViewOrangeInfo"
-            android:layout_alignTop="@+id/tv_email_attendance"
-            android:layout_toEndOf="@+id/tv_email_attendance"
-            android:text="@string/contact_frag_email_attendance_info"/>
-
+            android:layout_marginTop="6dp"
+            android:text="@string/contact_frag_email_attendance_info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_email_attendance" />
 
         <TextView
             android:id="@+id/tv_address_title"
             style="@style/TextViewContentTitle"
-            android:layout_below="@+id/iv_email_attendance"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="18dp"
-            android:text="@string/contact_frag_address_title"/>
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/contact_frag_address_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_email_attendance_info" />
 
         <ImageView
             android:id="@+id/iv_address"
             style="@style/ImageViewLink"
-            android:layout_below="@+id/tv_address_title"
-            android:layout_alignParentStart="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:contentDescription="@string/ic_map_marker_desc"
-            android:src="@drawable/ic_map_marker_black_18dp"/>
+            android:src="@drawable/ic_map_marker_black_18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_address_title" />
 
         <TextView
             android:id="@+id/tv_address"
             style="@style/TextViewLink"
-            android:layout_alignTop="@+id/iv_address"
-            android:layout_toEndOf="@+id/iv_address"
-            android:text="@string/contact_frag_address"/>
-    </RelativeLayout>
+            android:layout_marginStart="4dp"
+            android:text="@string/contact_frag_address"
+            app:layout_constraintStart_toEndOf="@id/iv_address"
+            app:layout_constraintTop_toTopOf="@id/iv_address" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

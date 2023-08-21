@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fl_form_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
@@ -8,19 +10,14 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <FrameLayout
-        android:id="@+id/fl_form_container"
+        android:id="@+id/flForm"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <FrameLayout
-            android:id="@+id/fl_form"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <include
-            android:id="@+id/proxyScreenForm"
-            layout="@layout/proxy_screen" />
+     <include
+         android:id="@+id/proxyScreenForm"
+         layout="@layout/proxy_screen" />
 
     </FrameLayout>
-
 </androidx.core.widget.NestedScrollView>
+

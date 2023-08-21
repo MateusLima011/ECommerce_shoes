@@ -20,13 +20,15 @@ class ContactFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentContactBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.infoBlock.tvInfoBlock.text = getString(R.string.contact_frag_info)
 
         with(binding) {
             ivPhoneCities.setOnClickListener { phoneCallIntent(tvPhoneCities.text.toString()) }
