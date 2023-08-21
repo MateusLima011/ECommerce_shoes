@@ -177,5 +177,20 @@
         E-mail não encontrado em nossa base de dados.
     </string>
 
+    <string name="title_activity_sign_up">
+        Cadastro
+    </string>
+
+    <string name="hint_email_to_login">E-mail (para login)</string>
+    <string name="hint_confirm_password">Confirmar senha</string>
+    <string name="do_login">Realizar login</string>
+    <string name="sign_upCreate">Cadastrar</string>
+    <string name="sign_up_going">Cadastrando&#8230;</string>
+    <string name="invalid_sign_up_email">
+        E-mail já cadastrado.
+    </string>
+    <string name="invalid_confirmed_password">
+        Confirme a senha informada no campo acima.
+    </string>
 
 </resources>

@@ -15,6 +15,8 @@ class ForgotPasswordActivity : FormActivity<ContentForgotPasswordBinding>() {
 
     override fun initActivity() {
         binding.etEmail.validate({ it.isValidEmail() }, getString(R.string.invalid_email))
+        setSupportActionBar(binding.toolbarForgotPassword.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         initViews()
     }
 
@@ -40,6 +42,7 @@ class ForgotPasswordActivity : FormActivity<ContentForgotPasswordBinding>() {
         binding.proxyScreenForm.flProxyContainer.visibility =
             if (status) View.VISIBLE else View.GONE
     }
+
     private fun backEndFakeDelay() {
         Handler(Looper.getMainLooper()).postDelayed({
             showProxy(false)
@@ -49,7 +52,7 @@ class ForgotPasswordActivity : FormActivity<ContentForgotPasswordBinding>() {
             snackBarFeedback(
                 binding.root,
                 status = false,
-                message = getString(R.string.invalid_login)
+                message = getString(R.string.invalid_login_email)
             )
         }, 1000)
     }

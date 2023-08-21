@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <include
+        android:id="@+id/toolbarSignUp"
+        layout="@layout/app_bar" />
+
+    <LinearLayout
+        android:id="@+id/ll_container_fields"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarSignUp">
+
+        <EditText
+            android:id="@+id/et_email"
+            style="@style/EditTextFormField"
+            android:layout_width="match_parent"
+            android:autofillHints=""
+            android:background="@drawable/bg_form_field_top"
+            android:hint="@string/hint_email_to_login"
+            android:imeOptions="actionNext"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/et_password"
+            style="@style/EditTextFormField"
+            android:layout_width="match_parent"
+            android:layout_marginTop="-1dp"
+            android:autofillHints=""
+            android:background="@drawable/bg_form_field_sqr"
+            android:hint="@string/hint_password"
+            android:imeOptions="actionNext"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/et_confirm_password"
+            style="@style/EditTextFormField"
+            android:layout_width="match_parent"
+            android:layout_marginTop="-1dp"
+            android:autofillHints=""
+            android:background="@drawable/bg_form_field_bottom"
+            android:hint="@string/hint_confirm_password"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/bt_sign_up"
+        style="@style/ButtonForm"
+        android:layout_marginTop="24dp"
+        android:text="@string/sign_up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_container_fields" />
+
+    <TextView
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Já possui uma conta?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bt_sign_up" />
+
+
+    <TextView
+        android:id="@+id/tv_login"
+        style="@style/TextViewLink"
+        android:layout_marginTop="12dp"
+        android:text="@string/do_login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login" />
+
+    <include
+        android:id="@+id/privacyPolicySignUp"
+        layout="@layout/text_view_privacy_policy_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bt_sign_up" />
+
+    <include
+        android:id="@+id/proxyScreenSignUp"
+        layout="@layout/proxy_screen"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

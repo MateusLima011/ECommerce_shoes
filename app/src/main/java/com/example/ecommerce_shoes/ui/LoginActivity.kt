@@ -88,8 +88,8 @@ open class LoginActivity : FormActivity<ActivityLoginBinding>(), TextView.OnEdit
     }
 
     private fun callSingUpActivity() {
-        Toast.makeText(this, "TODO: callSingUpActivity", Toast.LENGTH_SHORT)
-            .show()
+        val intent = Intent(this, SignUpActivity::class.java)
+        startActivity(intent)
     }
 
     private fun callPrivacyPolicyFragment() {
