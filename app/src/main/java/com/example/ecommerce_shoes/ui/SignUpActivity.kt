@@ -51,6 +51,10 @@ class SignUpActivity : FormActivity<ContentSignUpBinding>(),
             callPrivacyPolicyFragment()
         }
         binding.btSignUp.setOnClickListener { mainAction() }
+        binding.tvLogin.setOnClickListener {
+            intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun blockFields(status: Boolean) {

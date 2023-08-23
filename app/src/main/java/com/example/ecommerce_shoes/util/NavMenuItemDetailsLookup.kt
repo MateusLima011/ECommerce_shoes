@@ -10,9 +10,10 @@ class NavMenuItemDetailsLookup(private val rvMenuItems: RecyclerView) : ItemDeta
     override fun getItemDetails(event: MotionEvent): ItemDetails<Long>? {
         val view = rvMenuItems.findChildViewUnder(event.x, event.y)
 
-      return view?.let {
-          val holder = rvMenuItems.getChildViewHolder(it) as? NavMenuItemsAdapter.ViewHolder
-          holder?.getItemDetails()
-      }
+        if (view != null){
+            val holder = rvMenuItems.getChildViewHolder(view)
+            return(holder as NavMenuItemsAdapter.ViewHolder).itemDetails
+        }
+        return null
     }
 }

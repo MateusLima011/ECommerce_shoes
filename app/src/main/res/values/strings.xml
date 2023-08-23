@@ -27,55 +27,43 @@
     <string name="item_sign_out">Sair</string>
 
     <string name="about_frag_title">Sobre a BlueShoes</string>
-
     <string name="about_frag_mission_title">Missão</string>
     <string name="about_frag_mission_desc">
         Inspirar e transformar a vida das pessoas com calçados que
         permitem qualquer atividade no dia a dia.
     </string>
-
     <string name="about_frag_vision_title">Visão</string>
     <string name="about_frag_vision_desc">
         A melhor e mais inovadora experiência de compra do varejo
         de calçados.
     </string>
-
     <string name="about_frag_values_title">Valores</string>
     <string name="about_frag_values_desc">
         Ética, responsabilidade, espírito de equipe, inspiração e
         foco.
     </string>
-
     <string name="about_frag_ethic_title">Ética e integridade</string>
     <string name="about_frag_ethic_desc">
         A ética e a integridade fazem parte da nossa cultura e são
         essenciais para o nosso negócio.
     </string>
-
     <string name="about_frag_social_networks_title">
         Nos acompanhe nas redes sociais e não perca as promoções
     </string>
 
     <string name="ic_instagram_desc">Ícone do Instagram BlueShoes</string>
     <string name="label_instagram">/BlueShoes</string>
-
     <string name="ic_facebook_desc">Ícone do Facebook BlueShoes</string>
     <string name="label_facebook">/BlueShoesFace</string>
-
     <string name="ic_twitter_desc">Ícone do Twitter BlueShoes</string>
     <string name="label_twitter">/BlueShoesTwitter</string>
-
     <string name="ic_youtube_desc">Ícone do YouTube BlueShoes</string>
     <string name="label_youtube">/BlueShoesYT</string>
-
     <string name="ic_linkedin_desc">Ícone do LinkedIn BlueShoes</string>
     <string name="label_linkedin">/BlueShoesLkIn</string>
     <string name="info_linkedin">Para oportunidades de emprego!</string>
-
     <string name="ic_cnpj_desc">Ícone do CNPJ BlueShoes</string>
     <string name="label_cnpj">CNPJ 25.002.230/0001&#8211;10</string>
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="contact_frag_title">Contato</string>
 
@@ -84,7 +72,6 @@
         Em caso de problemas com a mercadoria ou em caso de trocas,
         seja bem específico e também adicione o número do pedido.
     </string>
-
     <string name="contact_frag_phones_title">Telefones</string>
     <string name="ic_phone_desc">Ícone de telefone.</string>
     <string name="contact_frag_phone_cities">(27) 3333&#8211;1111</string>
@@ -95,7 +82,6 @@
     <string name="contact_frag_phone_other_regions_info">
         Demais regiões no Brasil.
     </string>
-
     <string name="contact_frag_emails_title">E-mails</string>
     <string name="ic_email_desc">Ícone de e-mail.</string>
     <string name="contact_frag_email_orders">pedidos@blueshoes.com.br</string>
@@ -112,7 +98,6 @@
     <string name="info_email_app_install">
         Instale algum aplicativo de e-mail.
     </string>
-
     <string name="contact_frag_address_title">Endereço</string>
     <string name="ic_map_marker_desc">Ícone marcador de localização em map.</string>
     <string name="contact_frag_address">
@@ -121,7 +106,6 @@
     <string name="contact_frag_address_formatted_to_google_maps">
         Rua Vergueiro, Serra, Espírito Santo, Brasil.
     </string>
-
     <string name="info_google_maps_install">
         Instale o aplicativo do Google Maps.
     </string>
@@ -133,7 +117,6 @@
     <string name="title_activity_login">
         Login
     </string>
-
     <string name="invalid_email">
         Forneça um e-mail válido.
     </string>
@@ -193,4 +176,29 @@
         Confirme a senha informada no campo acima.
     </string>
 
+    <string name="title_activity_account_settings">
+        Configurações de conta
+    </string>
+
+    <string name="connected">Conectado:</string>
+
+    <string name="setting_item_profile">Perfil</string>
+    <string name="setting_item_profile_desc">
+        Para atualização de nome e foto de perfil.
+    </string>
+
+    <string name="setting_item_login">Conexão (login)</string>
+    <string name="setting_item_login_desc">
+        Para atualização de e-mail ou senha de acesso.
+    </string>
+
+    <string name="setting_item_address">Endereços</string>
+    <string name="setting_item_address_desc">
+        Para adição, remoção ou atualização de endereços de entrega.
+    </string>
+
+    <string name="setting_item_credit_cards">Cartões de crédito</string>
+    <string name="setting_item_credit_cards_desc">
+        Para adição e remoção de cartões de crédito.
+    </string>
 </resources>

@@ -35,6 +35,14 @@ class NavMenuItemsAdapter(private val items: List<NavMenuItem>) :
 
         private val ivIcon: ImageView = itemView.findViewById(R.id.iv_icon)
         private val tvLabel: TextView = itemView.findViewById(R.id.tv_label)
+        val itemDetails = NavMenuItemDetails()
+
+        init {
+            ivIcon
+            tvLabel
+            itemDetails
+        }
+
         fun bind(item: NavMenuItem) {
             tvLabel.text = item.label
 
@@ -45,18 +53,21 @@ class NavMenuItemsAdapter(private val items: List<NavMenuItem>) :
                 ivIcon.visibility = View.GONE
             }
 
-            val backgroundColor = if (selectionTracker.isSelected(item.id)) {
-                ContextCompat.getColor(itemView.context, R.color.colorNavItemSelected)
+
+            itemDetails.item = item
+            itemDetails.adapterPosition = adapterPosition
+
+            if (selectionTracker.isSelected(itemDetails.selectionKey)) {
+                itemView.setBackgroundColor(
+                    ContextCompat.getColor(
+                        itemView.context, R.color.colorNavItemSelected
+                    )
+                )
             } else {
-                Color.TRANSPARENT
+                itemView.setBackgroundColor(Color.TRANSPARENT)
             }
-            itemView.setBackgroundColor(backgroundColor)
         }
 
-        fun getItemDetails(): ItemDetailsLookup.ItemDetails<Long> =
-            object : ItemDetailsLookup.ItemDetails<Long>() {
-                override fun getPosition(): Int = adapterPosition
-                override fun getSelectionKey(): Long = items[adapterPosition].id
-            }
+
     }
 }
