@@ -6,18 +6,24 @@
 
     <include
         android:id="@+id/toolbarConfigProfile"
-        layout="@layout/app_bar"/>
+        layout="@layout/app_bar" />
 
-    <ImageView
-        android:id="@+id/ivProfile"
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/rivProfile"
         android:layout_width="108dp"
         android:layout_height="108dp"
         android:layout_marginTop="90dp"
-        android:contentDescription="@string/todo"
         android:src="@drawable/profile_hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:riv_border_color="@color/colorViewLine"
+        android:scaleType="centerCrop"
+        app:riv_oval="true"
+        app:riv_tile_mode="clamp"
+        app:riv_mutate_background="false"
+        app:riv_border_width="1dp"
+        app:riv_corner_radius="108dp" />
 
     <TextView
         android:id="@+id/tvPhotoInfo"
@@ -27,10 +33,10 @@
         android:layout_marginStart="80dp"
         android:maxLines="10"
         android:text="@string/info_profile_photo"
-        app:layout_constraintBottom_toBottomOf="@id/ivProfile"
+        app:layout_constraintBottom_toBottomOf="@id/rivProfile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/ivProfile"
-        app:layout_constraintTop_toTopOf="@id/ivProfile" />
+        app:layout_constraintStart_toStartOf="@id/rivProfile"
+        app:layout_constraintTop_toTopOf="@id/rivProfile" />
 
     <TextView
         android:id="@+id/tvNameProfile"
@@ -45,10 +51,10 @@
         style="@style/EditTextFormField"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
         android:background="@drawable/bg_form_field"
         android:imeOptions="actionDone"
         android:inputType="textPersonName"
-        android:layout_marginHorizontal="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
