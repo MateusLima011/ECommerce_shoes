@@ -45,6 +45,8 @@ class AccountSettingsActivity : AppCompatActivity() {
             AccountSettingsItemsAdapter(AccountSettingsItemsDataBase.getItems(this))
     }
 
+    fun getUser() = intent.getParcelableExtra<User>(User.KEY)
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
             finish()

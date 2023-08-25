@@ -11,5 +11,4 @@ class NavMenuItemKeyProvider(private val items: List<NavMenuItem>) :
     override fun getPosition(key: Long) = items.indexOf(items.single { item ->
         item.id == key
     })
-
 }

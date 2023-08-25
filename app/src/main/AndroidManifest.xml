@@ -15,6 +15,11 @@
         android:theme="@style/ThemeECommerce"
         tools:targetApi="31">
         <activity
+            android:name=".ui.ConfigProfileActivity"
+            android:label="@string/title_activity_config_profile"
+            android:theme="@style/ThemeECommerce.NoActionBar"
+            android:exported="false" />
+        <activity
             android:name=".ui.AccountSettingsActivity"
             android:exported="false"
             android:label="@string/title_activity_account_settings"

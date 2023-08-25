@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
     private val user = User(
         "Mateus Vinicius",
         R.drawable.user,
-        false
+        true
     )
 
     private val binding by lazy {
