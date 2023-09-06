@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.ecommerce_shoes.R
 import com.example.ecommerce_shoes.domain.AccountSettingItem
 import com.example.ecommerce_shoes.ui.ConfigProfileActivity
+import com.example.ecommerce_shoes.ui.config.connectiondata.ConnectDataActivity
 
 class AccountSettingsItemsDataBase {
     companion object {
@@ -17,7 +18,7 @@ class AccountSettingsItemsDataBase {
             AccountSettingItem(
                 context.getString(R.string.setting_item_login),
                 context.getString(R.string.setting_item_login_desc),
-                ConfigProfileActivity::class.java
+                ConnectDataActivity::class.java
             ),
             AccountSettingItem(
                 context.getString(R.string.setting_item_address),

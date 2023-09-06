@@ -1,4 +1,4 @@
-package com.example.ecommerce_shoes.ui
+package com.example.ecommerce_shoes.ui.config
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -10,18 +10,18 @@ import com.example.ecommerce_shoes.R
 import com.example.ecommerce_shoes.domain.AccountSettingItem
 import com.example.ecommerce_shoes.domain.User
 
-class AccountSettingsItemsAdapter(private val items: List<AccountSettingItem>) :
-    RecyclerView.Adapter<AccountSettingsItemsAdapter.ViewHolder>() {
+class AccountSettingsListAdapter(private val items: List<AccountSettingItem>) :
+    RecyclerView.Adapter<AccountSettingsListAdapter.ViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
-    ): AccountSettingsItemsAdapter.ViewHolder {
+    ): ViewHolder {
 
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.account_settings_item, parent, false)
         return ViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: AccountSettingsItemsAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setData(items[position])
     }
 

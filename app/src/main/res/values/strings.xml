@@ -233,4 +233,54 @@
     <string name="imagepicker_selection_limit">
             Apenas uma imagem pode ser selecionada.
         </string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="dialog_password_info">
+        Entre com a senha para poder prosseguir:
+    </string>
+    <string name="dialog_password_hint">Senha</string>
+    <string name="dialog_password_go">PROSSEGUIR</string>
+    <string name="dialog_password_cancel">CANCELAR</string>
+
+    <string name="config_connection_data_tab_email">E-MAIL</string>
+
+    <string name="hint_current_email">E-mail atual</string>
+    <string name="hint_new_email">Novo e-mail</string>
+    <string name="hint_new_email_confirm">Confirmar novo e-mail</string>
+
+    <string name="invalid_confirmed_email">
+        Confirme o e-mail informado no campo acima.
+    </string>
+
+    <string name="update_email_login">Atualizar e-mail de login</string>
+    <string name="update_email_login_going">Atualizando&#8230;</string>
+
+    <string name="config_connection_data_tab_password">SENHA</string>
+
+    <string name="hint_new_password">Nova senha</string>
+    <string name="hint_new_password_confirm">Confirmar nova senha</string>
+
+    <string name="update_password">Atualizar senha</string>
+    <string name="update_password_going">Atualizando&#8230;</string>
+    <string name="title_activity_config_connection_data">
+        Conexão (login)
+    </string>
+
+    <string name="config_credit_cards_tab_list">CARTÕES</string>
+
+    <string name="credit_card_list_empty">
+        Ainda não há cartões de crédito cadastrados.
+    </string>
+
+    <string name="credit_card_removed">
+        Cartão de crédito removido com sucesso.
+    </string>
+
+    <string name="credit_card_enterprise_label">Bandeira:</string>
+    <string name="credit_card_number_label">Número:</string>
+    <string name="credit_card_owner_name_label">Nome:</string>
+
+    <string name="remove_item">Remover</string>
+    <string name="remove_item_going">Removendo&#8230;</string>
+
 </resources>

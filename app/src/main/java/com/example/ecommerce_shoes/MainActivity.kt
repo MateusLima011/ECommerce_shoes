@@ -18,7 +18,7 @@ import com.example.ecommerce_shoes.domain.NavMenuItem
 import com.example.ecommerce_shoes.domain.User
 import com.example.ecommerce_shoes.domain.User.Companion.KEY
 import com.example.ecommerce_shoes.ui.AboutFragment
-import com.example.ecommerce_shoes.ui.AccountSettingsActivity
+import com.example.ecommerce_shoes.ui.config.AccountSettingsActivity
 import com.example.ecommerce_shoes.ui.ContactFragment
 import com.example.ecommerce_shoes.ui.LoginActivity
 import com.example.ecommerce_shoes.ui.NavMenuItemsAdapter
@@ -190,7 +190,7 @@ class MainActivity : AppCompatActivity() {
             transaction.commit()
 
             if (fragment == null) {
-                val fragId = intent?.getIntExtra(FRAGMENT_ID, R.id.item_about) ?: R.id.item_about
+                val fragId = intent?.getIntExtra(FRAGMENT_ID, 0) ?: R.id.item_all_shoes
                 getFragment(fragId)?.let { replaceFragment(it) }
             }
         }
@@ -241,21 +241,44 @@ class MainActivity : AppCompatActivity() {
             if (!selected) {
                 return
             }
-            itemCallFragment(key, callbackRemoveSelection)
+            if (isActivityCallInMenu(key)) {
+                itemCallActivity(key, callbackRemoveSelection)
+            } else {
+                itemCallFragment(key, callbackRemoveSelection)
+            }
         }
     }
 
-    inner class SelectLoggedObserverNavMenuItems(private val callbackRemoveSelection: () -> Unit) :
-        SelectionTracker.SelectionObserver<Long>() {
+    fun isActivityCallInMenu(key: Long) = when (key) {
+        R.id.item_settings.toLong() -> true
+        else -> false
+    }
 
-        override fun onItemStateChanged(key: Long, selected: Boolean) {
-            super.onItemStateChanged(key, selected)
+    private fun itemCallActivity(
+        key: Long,
+        callbackRemoveSelection: () -> Unit
+    ) {
 
-            if (!selected) {
-                return
+        callbackRemoveSelection()
+
+        lateinit var intent: Intent
+
+        when (key) {
+            R.id.item_settings.toLong() -> {
+                intent = Intent(
+                    this,
+                    AccountSettingsActivity::class.java
+                )
+                intent.putExtra(User.KEY, user)
             }
-            itemCallFragment(key, callbackRemoveSelection)
         }
+
+        navMenu.saveIsActivityItemFired(
+            this,
+            true
+        )
+
+        startActivity(intent)
     }
 
     private fun itemCallFragment(key: Long, callbackRemoveSelection: () -> Unit) {
@@ -293,7 +316,6 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         if (navMenu.wasActivityItemFired(this)) {
             selectNavMenuItems.select(navMenu.getLastSelectedItemFragmentID(this))
-            selectNavMenuItemsLogged.select(navMenu.getLastSelectedItemFragmentID(this))
         }
     }
 }

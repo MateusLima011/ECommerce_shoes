@@ -1,7 +1,6 @@
-package com.example.ecommerce_shoes.ui
+package com.example.ecommerce_shoes.ui.config
 
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -9,7 +8,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ecommerce_shoes.R
 import com.example.ecommerce_shoes.data.AccountSettingsItemsDataBase
-import com.example.ecommerce_shoes.databinding.AccountSettingsItemBinding
 import com.example.ecommerce_shoes.databinding.ActivityAccountSettingsBinding
 import com.example.ecommerce_shoes.domain.User
 
@@ -42,7 +40,7 @@ class AccountSettingsActivity : AppCompatActivity() {
 
         binding.rvAccountSettingsItems.addItemDecoration(divider)
         binding.rvAccountSettingsItems.adapter =
-            AccountSettingsItemsAdapter(AccountSettingsItemsDataBase.getItems(this))
+            AccountSettingsListAdapter(AccountSettingsItemsDataBase.getItems(this))
     }
 
     fun getUser() = intent.getParcelableExtra<User>(User.KEY)
