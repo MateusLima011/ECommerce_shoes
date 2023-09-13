@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_weight="0.7"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextViewFormLabel"
+                    android:text="@string/add_credit_card_number_label" />
+
+                <com.santalu.maskedittext.MaskEditText
+                    android:id="@+id/etCreditCardNumber"
+                    style="@style/EditTextFormField"
+                    android:layout_width="match_parent"
+                    android:autofillHints=""
+                    android:background="@drawable/bg_form_field"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    app:met_mask="#### #### #### ####"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextViewFormLabel"
+                    android:text="@string/add_credit_card_enterprise_label" />
+
+                <Spinner
+                    android:id="@+id/spCreditCardEnterprise"
+                    style="@style/SpinnerForm"
+                    android:entries="@array/credit_card_enterprise" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewFormLabel"
+                android:text="@string/add_credit_card_owner_name_label" />
+
+            <EditText
+                android:id="@+id/etCreditCardOwnerName"
+                style="@style/EditTextFormField"
+                android:layout_width="match_parent"
+                android:background="@drawable/bg_form_field"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewFormLabel"
+                android:text="@string/add_credit_card_owner_reg_number_label" />
+
+            <com.santalu.maskedittext.MaskEditText
+                android:id="@+id/etCreditCardOwnerReg"
+                style="@style/EditTextFormField"
+                android:layout_width="match_parent"
+                android:background="@drawable/bg_form_field"
+                android:imeOptions="actionNext"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextViewFormLabel"
+                    android:text="@string/add_credit_card_expiry_label" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="12dp"
+                        android:layout_weight="0.3"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/TextViewFormLabel"
+                            android:text="@string/add_credit_card_expiry_month_label" />
+
+                        <Spinner
+                            android:id="@+id/spCreditCardExpiryMonth"
+                            style="@style/SpinnerForm"
+                            android:entries="@array/months_number" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/TextViewFormLabel"
+                            android:text="@string/add_credit_card_expiry_year_label" />
+
+                        <EditText
+                            android:id="@+id/etCreditCardExpiryYear"
+                            style="@style/EditTextFormField"
+                            android:layout_width="match_parent"
+                            android:background="@drawable/bg_form_field"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLength="4" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:background="@color/colorViewLine" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="0.3"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextViewFormLabel"
+                    android:text="@string/add_credit_card_security_code_label" />
+
+                <EditText
+                    android:id="@+id/etCreditCardSecurityCode"
+                    style="@style/EditTextFormField"
+                    android:layout_width="match_parent"
+                    android:autofillHints=""
+                    android:background="@drawable/bg_form_field"
+                    android:imeOptions="actionDone"
+                    android:inputType="number" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btAddCreditCard"
+            style="@style/ButtonForm"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/add_credit_card" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

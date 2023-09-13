@@ -46,6 +46,10 @@
             android:label="@string/title_activity_config_connection_data"
             android:theme="@style/ThemeECommerce.NoActionBar"/>
         <activity
+            android:name=".ui.config.creditcard.CreditCardsActivity"
+            android:label="@string/title_activity_config_credit_cards"
+            android:theme="@style/ThemeECommerce.NoActionBar" />
+        <activity
             android:name=".ui.LoginActivity"
             android:exported="false"
             android:label="@string/title_activity_login"

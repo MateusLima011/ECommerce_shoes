@@ -9,25 +9,34 @@ import android.text.style.ImageSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.createBitmap
 import androidx.fragment.app.Fragment
+import com.blankj.utilcode.util.ColorUtils
 import com.example.ecommerce_shoes.R
+import com.example.ecommerce_shoes.databinding.FragmentConfigListBinding
 import com.example.ecommerce_shoes.databinding.FragmentConfigPasswordBinding
 import com.example.ecommerce_shoes.databinding.FragmentContactBinding
 import com.example.ecommerce_shoes.ui.config.connectiondata.FormPasswordFragment
+import com.example.ecommerce_shoes.util.PasswordDialogCaller
 import com.example.ecommerce_shoes.util.isValidPassword
 import com.example.ecommerce_shoes.util.validate
 import com.google.android.material.snackbar.Snackbar
 
 abstract class ConfigFormFragment : Fragment(), TextView.OnEditorActionListener {
+
+    private lateinit var binding: FragmentConfigListBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(getLayoutResourceID(),container,false)
+        return inflater.inflate(getLayoutResourceID(), container, false)
     }
+
     abstract fun getLayoutResourceID(): Int
     abstract fun backEndFakeDelay(statusAction: Boolean, feedBackMessage: String)
     abstract fun blockFields(status: Boolean)
@@ -59,6 +68,10 @@ abstract class ConfigFormFragment : Fragment(), TextView.OnEditorActionListener 
         textView.setText(spannedText, TextView.BufferType.SPANNABLE)
 
         snackBar.show()
+    }
+
+    private fun mainAction(view: View? = null){
+
     }
 
 }

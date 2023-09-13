@@ -5,6 +5,7 @@ import com.example.ecommerce_shoes.R
 import com.example.ecommerce_shoes.domain.AccountSettingItem
 import com.example.ecommerce_shoes.ui.ConfigProfileActivity
 import com.example.ecommerce_shoes.ui.config.connectiondata.ConnectDataActivity
+import com.example.ecommerce_shoes.ui.config.creditcard.CreditCardsActivity
 
 class AccountSettingsItemsDataBase {
     companion object {
@@ -28,7 +29,7 @@ class AccountSettingsItemsDataBase {
             AccountSettingItem(
                 context.getString(R.string.setting_item_credit_cards),
                 context.getString(R.string.setting_item_credit_cards_desc),
-                ConfigProfileActivity::class.java
+                CreditCardsActivity::class.java
             )
         )
     }

@@ -6,7 +6,7 @@ class CreditCardsDataBase {
 
     companion object {
 
-        fun getItems() = listOf(
+        fun getItems() = mutableListOf(
             CreditCard(
                 "6502",
                 "Visa",
