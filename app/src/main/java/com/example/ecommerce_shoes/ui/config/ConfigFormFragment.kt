@@ -28,8 +28,6 @@ import com.example.ecommerce_shoes.util.validate
 import com.google.android.material.snackbar.Snackbar
 
 abstract class ConfigFormFragment : Fragment(), TextView.OnEditorActionListener {
-
-    private lateinit var binding: FragmentConfigListBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -69,9 +67,4 @@ abstract class ConfigFormFragment : Fragment(), TextView.OnEditorActionListener 
 
         snackBar.show()
     }
-
-    private fun mainAction(view: View? = null){
-
-    }
-
 }

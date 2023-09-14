@@ -1,6 +1,8 @@
 package com.example.ecommerce_shoes.ui.config.creditcard
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +19,6 @@ class FormCreditCardFragment : ConfigFormFragment(), View.OnFocusChangeListener 
 
     private lateinit var binding: FragmentConfigNewCreditCardBinding
     override fun getLayoutResourceID() = R.layout.fragment_config_new_credit_card
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,12 +31,21 @@ class FormCreditCardFragment : ConfigFormFragment(), View.OnFocusChangeListener 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btAddCreditCard.setOnClickListener { }
+        binding.btAddCreditCard.setOnClickListener { mainAction()}
         binding.etCreditCardOwnerReg.onFocusChangeListener = this
     }
 
     override fun backEndFakeDelay(statusAction: Boolean, feedBackMessage: String) {
-        backEndFakeDelay(false, getString(R.string.invalid_credit_card))
+        Handler(Looper.getMainLooper()).postDelayed({
+            isMainButtonSending(false)
+            blockFields(false)
+
+            snackBarFeedback(
+                binding.root,
+                statusAction,
+                feedBackMessage
+            )
+        }, 1000)
     }
 
     override fun blockFields(status: Boolean) {
@@ -58,19 +68,29 @@ class FormCreditCardFragment : ConfigFormFragment(), View.OnFocusChangeListener 
         TODO("Not yet implemented")
     }
 
+    private fun mainAction() {
+        blockFields(true)
+        isMainButtonSending(true)
+        backEndFakeDelay(true, getString(R.string.invalid_credit_card))
+    }
+
     override fun onFocusChange(v: View?, hasFocus: Boolean) {
-        val editText = view as MaskEditText
 
-        val content = editText.text.toString().filter { it.isDigit() }
+        var mask = ""
+        val editText = v as MaskEditText
+        val pattern = Regex("[^0-9]")
+        val content = editText
+            .text
+            .toString()
+            .replace(pattern,"")
 
-        val mask = when {
-            !hasFocus -> {
-                if (content.isValidCPF()) "###.###.###-##"
-                else if (content.isValidCNPJ()) "##.###.###/####-##"
-                else ""
+        if (!hasFocus){
+            if (content.isValidCPF()){
+                mask = "###.###.###-##"
             }
-
-            else -> ""
+            else if (content.isValidCNPJ()){
+                mask = "##.###.###/####-##"
+            }
         }
 
         editText.mask = mask
