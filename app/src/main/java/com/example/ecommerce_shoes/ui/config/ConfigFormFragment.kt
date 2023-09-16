@@ -39,7 +39,7 @@ abstract class ConfigFormFragment : Fragment(), TextView.OnEditorActionListener 
     abstract fun backEndFakeDelay(statusAction: Boolean, feedBackMessage: String)
     abstract fun blockFields(status: Boolean)
     abstract fun isMainButtonSending(status: Boolean)
-    protected fun snackBarFeedback(viewContainer: ViewGroup, status: Boolean, message: String) {
+    protected open fun snackBarFeedback(viewContainer: ViewGroup, status: Boolean, message: String) {
         val snackBar = Snackbar.make(viewContainer, message, Snackbar.LENGTH_LONG)
 
         val iconColor =
@@ -67,4 +67,5 @@ abstract class ConfigFormFragment : Fragment(), TextView.OnEditorActionListener 
 
         snackBar.show()
     }
+
 }

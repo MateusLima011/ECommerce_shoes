@@ -19,7 +19,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/ThemeECommerce"
+        android:theme="@style/ThemeECommerce.NoActionBar"
         tools:targetApi="31">
         <activity
             android:name=".ui.ConfigProfileActivity"
@@ -49,6 +49,9 @@
             android:name=".ui.config.creditcard.CreditCardsActivity"
             android:label="@string/title_activity_config_credit_cards"
             android:theme="@style/ThemeECommerce.NoActionBar" />
+        <activity android:name=".ui.config.deliveryaddress.DeliveryAddressesActivity"
+            android:label="@string/title_activity_config_delivery_addresses"
+            android:theme="@style/ThemeECommerce.NoActionBar"/>
         <activity
             android:name=".ui.LoginActivity"
             android:exported="false"

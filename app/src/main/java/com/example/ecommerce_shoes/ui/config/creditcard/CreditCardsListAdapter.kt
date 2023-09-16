@@ -62,7 +62,7 @@ class CreditCardsListAdapter(
             tvEnterprise = itemView.findViewById(R.id.tvEnterprise)
             tvNumber = itemView.findViewById(R.id.tvNumber)
             tvOwnerName = itemView.findViewById(R.id.tvOwnerName)
-            btRemove = itemView.findViewById(R.id.bt_remove)
+            btRemove = itemView.findViewById(R.id.btRemove)
             btRemove.setOnClickListener(this)
         }
 

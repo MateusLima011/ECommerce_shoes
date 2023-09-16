@@ -6,6 +6,7 @@ import com.example.ecommerce_shoes.domain.AccountSettingItem
 import com.example.ecommerce_shoes.ui.ConfigProfileActivity
 import com.example.ecommerce_shoes.ui.config.connectiondata.ConnectDataActivity
 import com.example.ecommerce_shoes.ui.config.creditcard.CreditCardsActivity
+import com.example.ecommerce_shoes.ui.config.deliveryaddress.DeliveryAddressesActivity
 
 class AccountSettingsItemsDataBase {
     companion object {
@@ -24,7 +25,7 @@ class AccountSettingsItemsDataBase {
             AccountSettingItem(
                 context.getString(R.string.setting_item_address),
                 context.getString(R.string.setting_item_address_desc),
-                ConfigProfileActivity::class.java
+                DeliveryAddressesActivity::class.java
             ),
             AccountSettingItem(
                 context.getString(R.string.setting_item_credit_cards),
