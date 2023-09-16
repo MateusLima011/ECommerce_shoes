@@ -15,6 +15,10 @@ import com.example.ecommerce_shoes.ui.config.ConfigFormFragment
 open class NewDeliveryAddressFragment : ConfigFormFragment() {
 
     private lateinit var binding: ConfigNewDeliveryAddressBinding
+
+    companion object{
+        const val PAGER_POS = 1
+    }
     override fun getLayoutResourceID() = R.layout.config_new_delivery_address
 
     override fun onCreateView(
@@ -28,7 +32,7 @@ open class NewDeliveryAddressFragment : ConfigFormFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btNuAddress.setOnClickListener {  }
+
     }
 
     override fun backEndFakeDelay(statusAction: Boolean, feedBackMessage: String) {

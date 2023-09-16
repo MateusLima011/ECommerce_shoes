@@ -18,20 +18,24 @@ import androidx.fragment.app.Fragment
 import com.example.ecommerce_shoes.R
 import com.example.ecommerce_shoes.databinding.ConfigNewDeliveryAddressBinding
 import com.example.ecommerce_shoes.domain.DeliveryAddress
+import com.example.ecommerce_shoes.util.visible
 import com.google.android.material.snackbar.Snackbar
 
 class UpdateDeliveryAddressFragment : NewDeliveryAddressFragment() {
 
     private lateinit var binding: ConfigNewDeliveryAddressBinding
 
-    override fun getLayoutResourceID() = R.layout.config_update_delivery_address
+    override fun getLayoutResourceID() = R.layout.config_new_delivery_address
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = ConfigNewDeliveryAddressBinding.inflate(inflater, container, false)
+        binding.tvTitleAt.visible()
         return binding.root
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

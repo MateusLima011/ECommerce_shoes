@@ -90,12 +90,11 @@ class DeliveryAddressesListAdapter(
             )
             updateFrag.arguments = bundle
 
-
             val transaction = fragment.activity?.supportFragmentManager?.beginTransaction()
 
             transaction
                 ?.replace(
-                    fragment.requireView().findViewById<FrameLayout>(R.i
+                    R.id.fl_root,
                     updateFrag
                 )
                 ?.addToBackStack(null)
@@ -115,8 +114,6 @@ class DeliveryAddressesListAdapter(
         }
 
         private fun toRemove(selectedItem: Int) {
-
-
             if (selectedItem != RecyclerView.NO_POSITION) {
                 val alertDialogBuilder = AlertDialog.Builder(itemView.context)
                 alertDialogBuilder.setTitle("Confirmar Remoção")
