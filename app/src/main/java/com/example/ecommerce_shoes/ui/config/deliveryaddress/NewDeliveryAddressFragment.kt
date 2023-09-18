@@ -14,11 +14,12 @@ import com.example.ecommerce_shoes.ui.config.ConfigFormFragment
 
 open class NewDeliveryAddressFragment : ConfigFormFragment() {
 
-    private lateinit var binding: ConfigNewDeliveryAddressBinding
+    private val binding by lazy { ConfigNewDeliveryAddressBinding.inflate(layoutInflater) }
 
-    companion object{
+    companion object {
         const val PAGER_POS = 1
     }
+
     override fun getLayoutResourceID() = R.layout.config_new_delivery_address
 
     override fun onCreateView(
@@ -26,31 +27,29 @@ open class NewDeliveryAddressFragment : ConfigFormFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = ConfigNewDeliveryAddressBinding.inflate(inflater,container,false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.btNuAddress.setOnClickListener { mainAction() }
     }
 
-    override fun backEndFakeDelay(statusAction: Boolean, feedBackMessage: String) {
+    private fun backEndFakeDelay() {
         Handler(Looper.getMainLooper()).postDelayed({
+            showProxy(false)
             isMainButtonSending(false)
             blockFields(false)
 
             snackBarFeedback(
                 binding.root,
-                statusAction,
-                feedBackMessage
+                false,
+                getString(R.string.invalid_delivery_address)
             )
         }, 1000)
     }
 
-
-
-    override fun blockFields(status: Boolean) {
+    private fun blockFields(status: Boolean) {
         binding.etStreetNewAddress.isEnabled = !status
         binding.etNumberNewAddress.isEnabled = !status
         binding.etComplementNewAddress.isEnabled = !status
@@ -61,15 +60,23 @@ open class NewDeliveryAddressFragment : ConfigFormFragment() {
         binding.btNuAddress.isEnabled = !status
     }
 
-    override fun isMainButtonSending(status: Boolean) {
+    private fun mainAction() {
+        blockFields(true)
+        backEndFakeDelay()
+        showProxy(true)
+        isMainButtonSending(true)
+    }
+
+    private fun isMainButtonSending(status: Boolean) {
         binding.btNuAddress.text =
             if (status)
                 getString(R.string.add_delivery_address_going)
-        else
-            getString(R.string.add_delivery_address)
+            else
+                getString(R.string.add_delivery_address)
     }
 
-    override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
-        TODO("Not yet implemented")
+    private fun showProxy(status: Boolean) {
+        binding.proxyScreeDelivery.flProxyContainer.visibility =
+            if (status) View.VISIBLE else View.GONE
     }
 }

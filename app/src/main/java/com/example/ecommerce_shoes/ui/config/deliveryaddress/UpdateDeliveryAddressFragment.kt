@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
 import com.example.ecommerce_shoes.R
 import com.example.ecommerce_shoes.databinding.ConfigNewDeliveryAddressBinding
@@ -23,7 +24,7 @@ import com.google.android.material.snackbar.Snackbar
 
 class UpdateDeliveryAddressFragment : NewDeliveryAddressFragment() {
 
-    private lateinit var binding: ConfigNewDeliveryAddressBinding
+    private val binding by lazy { ConfigNewDeliveryAddressBinding.inflate(layoutInflater) }
 
     override fun getLayoutResourceID() = R.layout.config_new_delivery_address
     override fun onCreateView(
@@ -31,11 +32,8 @@ class UpdateDeliveryAddressFragment : NewDeliveryAddressFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = ConfigNewDeliveryAddressBinding.inflate(inflater, container, false)
         binding.tvTitleAt.visible()
         return binding.root
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,13 +41,13 @@ class UpdateDeliveryAddressFragment : NewDeliveryAddressFragment() {
 
         binding.btNuAddress.text = getString(R.string.update_delivery_address)
         fillForm()
+        binding.btNuAddress.setOnClickListener { mainAction() }
     }
 
     private fun fillForm() {
         val address = requireArguments().getParcelable<DeliveryAddress>(
             DeliveryAddress.KEY
         )
-
         binding.etStreetNewAddress.setText(address?.street)
         binding.etNumberNewAddress.setText(address?.number.toString())
         binding.etComplementNewAddress.setText(address?.complement)
@@ -59,19 +57,26 @@ class UpdateDeliveryAddressFragment : NewDeliveryAddressFragment() {
         binding.spStateNewAddress.setSelection(address!!.state)
     }
 
-    override fun backEndFakeDelay(statusAction: Boolean, feedBackMessage: String) {
+    private fun mainAction(){
+        showProxy(true)
+        backEndFakeDelay()
+        isMainButtonSending(true)
+    }
+
+    private fun backEndFakeDelay() {
         Handler(Looper.getMainLooper()).postDelayed({
+            showProxy(false)
             isMainButtonSending(false)
 
             snackBarFeedback(
                 binding.root,
-                statusAction,
-                feedBackMessage
+                false,
+                getString(R.string.invalid_delivery_address)
             )
         }, 1000)
     }
 
-    override fun isMainButtonSending(status: Boolean) {
+    private fun isMainButtonSending(status: Boolean) {
         binding.btNuAddress.text =
             if (status)
                 getString(R.string.update_delivery_address_going)
@@ -79,33 +84,9 @@ class UpdateDeliveryAddressFragment : NewDeliveryAddressFragment() {
                 getString(R.string.update_delivery_address)
     }
 
-    override fun snackBarFeedback(viewContainer: ViewGroup, status: Boolean, message: String) {
-        val snackBar = Snackbar.make(viewContainer, message, Snackbar.LENGTH_LONG)
-
-        val iconColor =
-            if (status) ContextCompat.getColor(requireActivity(), R.color.colorNavButton)
-            else Color.RED
-
-        val iconResource =
-            if (status) R.drawable.ic_check_black_18dp else R.drawable.ic_close_black_18dp
-
-        val img = ResourcesCompat.getDrawable(resources, iconResource, null)
-        img!!.setBounds(0, 0, img.intrinsicWidth, img.intrinsicHeight)
-        img.setColorFilter(iconColor, PorterDuff.Mode.SRC_ATOP)
-
-        val textView =
-            snackBar.view.findViewById(com.google.android.material.R.id.snackbar_text) as TextView
-
-        val spannedText = SpannableString("     ${textView.text}")
-        spannedText.setSpan(
-            ImageSpan(img, ImageSpan.ALIGN_BOTTOM),
-            0,
-            1,
-            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        textView.setText(spannedText, TextView.BufferType.SPANNABLE)
-
-        snackBar.show()
+    private fun showProxy(status: Boolean) {
+        binding.proxyScreeDelivery.flProxyContainer.visibility =
+            if (status) View.VISIBLE else View.GONE
     }
 
 }

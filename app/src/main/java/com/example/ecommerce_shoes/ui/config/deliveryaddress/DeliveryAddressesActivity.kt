@@ -31,6 +31,7 @@ class DeliveryAddressesActivity() : ConfigFormActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         val fragmentInStack = supportFragmentManager.backStackEntryCount
 

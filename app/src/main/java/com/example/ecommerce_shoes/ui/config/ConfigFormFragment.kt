@@ -15,6 +15,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.createBitmap
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
 import com.blankj.utilcode.util.ColorUtils
 import com.example.ecommerce_shoes.R
@@ -27,7 +28,7 @@ import com.example.ecommerce_shoes.util.isValidPassword
 import com.example.ecommerce_shoes.util.validate
 import com.google.android.material.snackbar.Snackbar
 
-abstract class ConfigFormFragment : Fragment(), TextView.OnEditorActionListener {
+abstract class ConfigFormFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,22 +37,23 @@ abstract class ConfigFormFragment : Fragment(), TextView.OnEditorActionListener 
     }
 
     abstract fun getLayoutResourceID(): Int
-    abstract fun backEndFakeDelay(statusAction: Boolean, feedBackMessage: String)
-    abstract fun blockFields(status: Boolean)
-    abstract fun isMainButtonSending(status: Boolean)
+
     protected open fun snackBarFeedback(viewContainer: ViewGroup, status: Boolean, message: String) {
         val snackBar = Snackbar.make(viewContainer, message, Snackbar.LENGTH_LONG)
 
         val iconColor =
             if (status) ContextCompat.getColor(requireActivity(), R.color.colorNavButton)
-            else Color.RED
+            else ContextCompat.getColor(requireActivity(), R.color.colorMediumRed)
 
         val iconResource =
-            if (status) R.drawable.ic_check_black_18dp else R.drawable.ic_close_black_18dp
+            if (status) R.drawable.ic_check_black_18dp
+            else R.drawable.ic_close_black_18dp
 
         val img = ResourcesCompat.getDrawable(resources, iconResource, null)
-        img!!.setBounds(0, 0, img.intrinsicWidth, img.intrinsicHeight)
-        img.setColorFilter(iconColor, PorterDuff.Mode.SRC_ATOP)
+        img?.setBounds(0, 0, img.intrinsicWidth, img.intrinsicHeight)
+
+        DrawableCompat.setTint(img!!, iconColor)
+        DrawableCompat.setTintMode(img, PorterDuff.Mode.SRC_ATOP)
 
         val textView =
             snackBar.view.findViewById(com.google.android.material.R.id.snackbar_text) as TextView

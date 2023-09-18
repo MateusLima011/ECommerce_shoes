@@ -40,29 +40,4 @@ class DeliveryAddressesListFragment : ConfigListFragment() {
         val adapter = DeliveryAddressesListAdapter(this, DeliveryAddressesDataBase.getItems())
         binding.rvDeliveryAddresses.adapter = adapter
     }
-
-    override fun backEndFakeDelay(statusAction: Boolean, feedBackMessage: String) {
-        Handler(Looper.getMainLooper()).postDelayed({
-            isMainButtonSending(false)
-            blockFields(false)
-
-            snackBarFeedback(
-                binding.root,
-                statusAction,
-                feedBackMessage
-            )
-        }, 1000)
-    }
-
-    override fun blockFields(status: Boolean) {
-        TODO("Not yet implemented")
-    }
-
-    override fun isMainButtonSending(status: Boolean) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
-        TODO("Not yet implemented")
-    }
 }

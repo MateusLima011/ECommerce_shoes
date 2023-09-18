@@ -35,20 +35,20 @@ class FormCreditCardFragment : ConfigFormFragment(), View.OnFocusChangeListener 
         binding.etCreditCardOwnerReg.onFocusChangeListener = this
     }
 
-    override fun backEndFakeDelay(statusAction: Boolean, feedBackMessage: String) {
+    private fun backEndFakeDelay() {
         Handler(Looper.getMainLooper()).postDelayed({
             isMainButtonSending(false)
             blockFields(false)
 
             snackBarFeedback(
                 binding.root,
-                statusAction,
-                feedBackMessage
+                false,
+                getString(R.string.invalid_credit_card)
             )
         }, 1000)
     }
 
-    override fun blockFields(status: Boolean) {
+    private fun blockFields(status: Boolean) {
         binding.etCreditCardNumber.isEnabled = !status
         binding.spCreditCardEnterprise.isEnabled = !status
         binding.etCreditCardOwnerName.isEnabled = !status
@@ -59,19 +59,14 @@ class FormCreditCardFragment : ConfigFormFragment(), View.OnFocusChangeListener 
         binding.btAddCreditCard.isEnabled = !status
     }
 
-    override fun isMainButtonSending(status: Boolean) {
+    private fun isMainButtonSending(status: Boolean) {
         binding.btAddCreditCard.text = if (status) getString(R.string.add_credit_card_going)
         else getString(R.string.add_credit_card)
     }
-
-    override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
-        TODO("Not yet implemented")
-    }
-
     private fun mainAction() {
         blockFields(true)
         isMainButtonSending(true)
-        backEndFakeDelay(true, getString(R.string.invalid_credit_card))
+        backEndFakeDelay()
     }
 
     override fun onFocusChange(v: View?, hasFocus: Boolean) {

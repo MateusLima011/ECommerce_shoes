@@ -19,7 +19,8 @@ import com.example.ecommerce_shoes.util.PasswordDialogCaller
 import com.example.ecommerce_shoes.util.isValidPassword
 import com.example.ecommerce_shoes.util.validate
 
-class FormPasswordFragment : ConfigFormFragment(), PasswordDialogCaller {
+class FormPasswordFragment : ConfigFormFragment(), PasswordDialogCaller,
+    TextView.OnEditorActionListener {
 
     private lateinit var binding: FragmentConfigPasswordBinding
     override fun getLayoutResourceID() = R.layout.fragment_config_password
@@ -58,7 +59,7 @@ class FormPasswordFragment : ConfigFormFragment(), PasswordDialogCaller {
         return false
     }
 
-    override fun backEndFakeDelay(statusAction: Boolean, feedBackMessage: String) {
+    private fun backEndFakeDelay() {
         Handler(Looper.getMainLooper()).postDelayed({
             showProxy(false)
             isMainButtonSending(false)
@@ -66,19 +67,19 @@ class FormPasswordFragment : ConfigFormFragment(), PasswordDialogCaller {
 
             snackBarFeedback(
                 binding.root,
-                statusAction,
-                feedBackMessage
+                false,
+                getString(R.string.invalid_password)
             )
         }, 1000)
     }
 
-    override fun blockFields(status: Boolean) {
+    private fun blockFields(status: Boolean) {
         binding.etNewPassword.isEnabled = !status
         binding.etNewPasswordConfirm.isEnabled = !status
         binding.btUpdatePassword.isEnabled = !status
     }
 
-    override fun isMainButtonSending(status: Boolean) {
+    private fun isMainButtonSending(status: Boolean) {
         binding.btUpdatePassword.text = if (status) getString(R.string.update_password_going)
         else getString(R.string.update_password)
     }
@@ -93,7 +94,7 @@ class FormPasswordFragment : ConfigFormFragment(), PasswordDialogCaller {
         blockFields(true)
         isMainButtonSending(true)
         showProxy(true)
-        backEndFakeDelay(true, getString(R.string.invalid_password))
+        backEndFakeDelay()
     }
 
     override fun callPasswordDialog() {

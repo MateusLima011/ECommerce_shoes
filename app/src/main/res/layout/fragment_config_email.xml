@@ -1,58 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="50dp"
-    android:layout_marginTop="80dp"
+    android:id="@+id/llContainerFields"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/llContainerFields"
+    <EditText
+        android:id="@+id/etCurrentEmail"
+        style="@style/EditTextFormField"
+        android:layout_gravity="center"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/bg_form_field_top"
+        android:hint="@string/hint_current_email"
+        android:imeOptions="actionNext"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/etNewEmail"
+        style="@style/EditTextFormField"
+        android:layout_gravity="center"
+        android:layout_marginTop="-1dp"
+        android:background="@drawable/bg_form_field_sqr"
+        android:hint="@string/hint_new_email"
+        android:imeOptions="actionNext"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/etNewEmailConfirm"
+        style="@style/EditTextFormField"
+        android:layout_gravity="center"
+        android:layout_marginTop="-1dp"
+        android:background="@drawable/bg_form_field_bottom"
+        android:hint="@string/hint_new_email_confirm"
+        android:imeOptions="actionDone"
+        android:inputType="textEmailAddress" />
+
+    <Button
+
+        android:id="@+id/btUpdateEmailLogin"
+        style="@style/ButtonForm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="vertical">
+        android:layout_marginHorizontal="1dp"
+        android:layout_marginBottom="3dp"
+        android:text="@string/update_email_login" />
 
-        <EditText
-            android:id="@+id/etCurrentEmail"
-            style="@style/EditTextFormField"
-            android:background="@drawable/bg_form_field_top"
-            android:hint="@string/hint_current_email"
-            android:imeOptions="actionNext"
-            android:inputType="textEmailAddress" />
-
-        <EditText
-            android:id="@+id/etNewEmail"
-            style="@style/EditTextFormField"
-            android:layout_marginTop="-1dp"
-            android:background="@drawable/bg_form_field_sqr"
-            android:hint="@string/hint_new_email"
-            android:imeOptions="actionNext"
-            android:inputType="textEmailAddress" />
-
-        <EditText
-            android:id="@+id/etNewEmailConfirm"
-            style="@style/EditTextFormField"
-            android:layout_marginTop="-1dp"
-            android:background="@drawable/bg_form_field_bottom"
-            android:hint="@string/hint_new_email_confirm"
-            android:imeOptions="actionDone"
-            android:inputType="textEmailAddress" />
-
-        <Button
-            android:id="@+id/btUpdateEmailLogin"
-            style="@style/ButtonForm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="1dp"
-            android:layout_marginBottom="3dp"
-            android:text="@string/update_email_login" />
-
-        <include
-            android:id="@+id/proxyScreenEmailConfig"
-            layout="@layout/proxy_screen" />
-
-    </LinearLayout>
+    <include
+        android:id="@+id/proxyScreenEmailConfig"
+        layout="@layout/proxy_screen" />
 
 </LinearLayout>

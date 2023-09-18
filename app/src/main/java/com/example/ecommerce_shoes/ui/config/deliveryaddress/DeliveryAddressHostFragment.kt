@@ -31,21 +31,6 @@ class DeliveryAddressHostFragment: ConfigFormFragment() {
         }
         return view
     }
-
     override fun getLayoutResourceID() = 0
-    override fun backEndFakeDelay(statusAction: Boolean, feedBackMessage: String) {
-        TODO("Not yet implemented")
-    }
 
-    override fun blockFields(status: Boolean) {
-        TODO("Not yet implemented")
-    }
-
-    override fun isMainButtonSending(status: Boolean) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
-        TODO("Not yet implemented")
-    }
 }

@@ -19,7 +19,7 @@ import com.example.ecommerce_shoes.util.isValidEmail
 import com.example.ecommerce_shoes.util.isValidPassword
 import com.example.ecommerce_shoes.util.validate
 
-class FormEmailFragment : ConfigFormFragment(), PasswordDialogCaller {
+class FormEmailFragment : ConfigFormFragment(), PasswordDialogCaller{
 
     private lateinit var binding: FragmentConfigEmailBinding
     override fun getLayoutResourceID() = R.layout.fragment_config_email
@@ -42,7 +42,7 @@ class FormEmailFragment : ConfigFormFragment(), PasswordDialogCaller {
             binding.etNewEmail.text.isNotEmpty() && it == binding.etNewEmail.text.toString()
                     || binding.etNewEmail.text.isEmpty()
         }, getString(R.string.invalid_confirmed_email))
-        binding.etNewEmailConfirm.setOnEditorActionListener(this)
+
     }
 
     private fun showProxy(status: Boolean) {
@@ -50,7 +50,7 @@ class FormEmailFragment : ConfigFormFragment(), PasswordDialogCaller {
             if (status) View.VISIBLE else View.GONE
     }
 
-    override fun backEndFakeDelay(statusAction: Boolean, feedBackMessage: String) {
+    private fun backEndFakeDelay() {
         Handler(Looper.getMainLooper()).postDelayed({
             showProxy(false)
             isMainButtonSending(false)
@@ -58,31 +58,27 @@ class FormEmailFragment : ConfigFormFragment(), PasswordDialogCaller {
 
             snackBarFeedback(
                 binding.root,
-                statusAction,
-                feedBackMessage
+                false,
+                getString(R.string.invalid_password)
             )
         }, 1000)
-    }
-
-    override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
-        TODO("Not yet implemented")
     }
 
     private fun mainAction() {
         blockFields(true)
         isMainButtonSending(true)
         showProxy(true)
-        backEndFakeDelay(true, getString(R.string.invalid_password))
+        backEndFakeDelay()
     }
 
-    override fun blockFields(status: Boolean) {
+    private fun blockFields(status: Boolean) {
         binding.etCurrentEmail.isEnabled = !status
         binding.etNewEmail.isEnabled = !status
         binding.etNewEmailConfirm.isEnabled = !status
         binding.btUpdateEmailLogin.isEnabled = !status
     }
 
-    override fun isMainButtonSending(status: Boolean) {
+    private fun isMainButtonSending(status: Boolean) {
         binding.btUpdateEmailLogin.text = if (status) getString(R.string.update_email_login_going)
         else getString(R.string.update_email_login)
     }
